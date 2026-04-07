@@ -1,80 +1,248 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Contoh Halaman HTML</title>
+    <title>Website Responsive</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background-color: #f4f6f9;
+        }
+
+        /* MENU */
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background-color: #2c3e50;
+            padding: 15px;
+        }
+
+        .menu div {
+            text-align: center;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* SECTION 2 */
+        #section2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 30px;
+            background-color: white;
+            align-items: center;
+        }
+
+        #section2 img {
+            border-radius: 10px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* SECTION 3 */
+        #section3 {
+            padding: 30px;
+            background-color: #ecf0f1;
+            text-align: center;
+        }
+
+        .biodata-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .box {
+    background-color: transparent; /* hilangkan background */
+    color: #9b59b6; /* warna teks saja */
+    padding: 20px;
+    border: 1px solid #9b59b6; /* opsional biar tetap ada kotak */
+    border-radius: 10px;
+}
+
+        /* SECTION 4 */
+        #section4 {
+            padding: 30px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px; /* jarak kecil biar nyambung */
+    margin-top: 20px;
+        }
+
+        .card {
+    background-color: #f4f6f9(255, 255, 255);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    color: black;
+        }
+
+        .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+        }
+        .card h3 {
+    margin: 10px;
+    }
+
+    .card p {
+    margin: 10px;
+    font-size: 14px;
+    color: #555;
+    }
+
+    .card::after {
+    content: "Lihat Detail";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.3s;
+    }
+
+    .card {
+    position: relative;
+    }
+
+        /* ===================== */
+        /* RESPONSIVE: TABLET */
+        /* ===================== */
+        @media (max-width: 768px) {
+
+            .menu {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            #section2 {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .biodata-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ===================== */
+        /* RESPONSIVE: MOBILE */
+        /* ===================== */
+        @media (max-width: 480px) {
+
+            .menu {
+                grid-template-columns: 1fr;
+            }
+
+            .biodata-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #section2 img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- SECTION 1: MENU -->
-<table border="1" width="100%">
-    <tr>
-        <td align="center"><a href="#">Header</a></td>
-        <td align="center"><a href="#">Biodata</a></td>
-        <td align="center"><a href="#">Portofolio</a></td>
-    </tr>
-</table>
+<!-- MENU -->
+<div class="menu">
+    <div><a href="#">Header</a></div>
+    <div><a href="#">Biodata</a></div>
+    <div><a href="#">Portofolio</a></div>
+</div>
 
-<br>
+<!-- SECTION 2 -->
+<div id="section2">
+    <div>
+        <h1>Selamat Datang di Website Saya</h1>
+        <p>Website ini sudah responsive di berbagai perangkat.</p>
+        <button>Pelajari lebih Lanjut</button>
+    </div>
+    <div align="center">
+        <img src="img/foto avi.jpg" width="200" height="200">
+    </div>
+</div>
 
-<!-- SECTION 2: JUDUL KIRI & GAMBAR KANAN -->
-<table border="1" width="100%" id="section2">
-    <tr>
-        <td width="50%" align="left" valign="top"> 
-            <h1>Selamat Datang di Website Saya</h1>
-            <p>Ini adalah contoh header dengan dua kolom kiri berisi seperti ini.</p>
-            <button>Pelajari lebih Lanjut</button>
-        </td>
-        <td width="50%" align="center" valign="middle">
-            <img src="img/Foto Saya.jpg" width="200" height="200" alt="FOTO SAYA">
-        </td>
-    </tr>
-</table>
-<br>
+<!-- SECTION 3 -->
+<div id="section3">
+    <h2>About Me</h2>
+    <p>A brief introduction about myself</p>
 
-<!-- SECTION 3: BIODATA DENGAN (6 BOX) -->
-<table border="1" width="100%" id="section3">
-    <tr>
-        <td colspan="3" align="center">
-            <h2>About Me</h2>
-            <p>A brief introduction about myself</p>
-        </td>
-    </tr>
-    <tr>
-        <td align="center">Full Name</td>
-        <td align="center">Education</td>
-        <td align="center">Pekerjaan</td>
-    </tr>
-    <tr>
-        <td align="center">Contact</td>
-        <td align="center">Hobi</td>
-        <td align="center">Alamat</td>
-    </tr>
-</table>
+    <div class="biodata-grid">
+        <div class="box">Full Name</div>
+        <div class="box">Education</div>
+        <div class="box">Pekerjaan</div>
+        <div class="box">Contact</div>
+        <div class="box">Hobi</div>
+        <div class="box">Alamat</div>
+    </div>
+</div>
 
-<!-- SECTION 4: PORTOFOLIO -->
-<table border="1" width="100%" id="section4">
-    <tr>
-        <td colspan="3" align="center">
-            <h2>Portofolio</h2></td>
-    </tr>
-    <tr>
-        <td align="center" valign="top">
-            <img src="img/Foto Saya.jpg" width="350" height="200" alt="Foto Saya">
+<!-- SECTION 4 -->
+<div id="section4">
+    <h2>Portofolio</h2>
+
+    <div class="portfolio-grid">
+        <div class="card">
+            <img src="img/proyek1.JPG">
             <h3>Proyek 1</h3>
             <p>Deskripsi Proyek 1</p>
-        </td>
-        <td align="center" valign="top">
-            <img src="img/Foto Saya.jpg" width="350" height="200" alt="FOTO SAYA">
+        </div>
+
+        <div class="card">
+            <img src="img/proyek2.jpg">
             <h3>Proyek 2</h3>
             <p>Deskripsi Proyek 2</p>
-        </td>
-        <td align="center" valign="top">
-            <img src="img/Foto Saya.jpg" width="350" height="200" alt="Foto Saya">
+        </div>
+
+        <div class="card">
+            <img src="img/images.jpg">
             <h3>Proyek 3</h3>
             <p>Deskripsi Proyek 3</p>
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
