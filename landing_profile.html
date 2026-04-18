@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile Landing Page</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #0d6efd;
+    }
+
+    .navbar-brand, .nav-link {
+      color: white !important;
+      font-weight: 500;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0d6efd, #6610f2);
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero img {
+      width: 120px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 4px solid white;
+    }
+
+    /* Hover Card */
+    .card:hover {
+      transform: translateY(-10px);
+      transition: 0.3s;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    footer {
+      background: #0d6efd;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">MyProfile</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
+        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <img src="img/perpisahan.jpg" alt="profile">
+  <h1>Avi Sulistianing Palestin</h1>
+  <p>Web Developer | UI Designer</p>
+  <button class="btn btn-light mt-3" data-bs-toggle="modal" data-bs-target="#aboutModal">Tentang Saya</button>
+</section>
+
+<!-- Carousel -->
+<section class="container my-5" id="portfolio">
+  <h3 class="text-center mb-4">Portfolio</h3>
+  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://www.boardinfinity.com/blog/content/images/2023/01/Frontend-vs-Backend.png" class="img-fluid" alt="1" style="max-height:200px ;">
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.mindinventory.com/blog/wp-content/uploads/2022/10/frontend-development-tools.png" class="img-fluid" alt="2" style="max-height:200px ;">
+      </div>
+      <div class="carousel-item">
+        <img src="https://miro.medium.com/0*Vd9KM9sADSGzuT91.jpg" class="img-fluid" alt="3" style="max-height:200px ;">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</section>
+
+<!-- Cards -->
+<section class="container my-5">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card p-3">
+        <h5>Project 1</h5>
+        <p>Deskripsi singkat project.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card p-3">
+        <h5>Project 2</h5>
+        <p>Deskripsi singkat project.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card p-3">
+        <h5>Project 3</h5>
+        <p>Deskripsi singkat project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="container my-5" id="contact">
+  <h3 class="text-center mb-3">Kontak</h3>
+  <form>
+    <div class="mb-3">
+      <input type="text" class="form-control" placeholder="Nama">
+    </div>
+    <div class="mb-3">
+      <input type="email" class="form-control" placeholder="Email">
+    </div>
+    <div class="mb-3">
+      <textarea class="form-control" rows="3" placeholder="Pesan"></textarea>
+    </div>
+    <button class="btn btn-primary">Kirim</button>
+  </form>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="aboutModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tentang Saya</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Saya adalah seorang developer yang fokus pada pembuatan website modern dan responsive.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 Avi Sulistianing Palestin | All Rights Reserved</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+  // === DATA PROFIL (UBAH SESUAI DATA KAMU) ===
+  const profileData = {
+    nama: "Nama Anda",
+    email: "email@gmail.com",
+    pekerjaan: "Web Developer | UI Designer",
+    pesan: "Halo, saya tertarik bekerja sama dengan Anda"
+  };
+
+  // === AUTO ISI FORM ===
+  function isiOtomatis() {
+    document.querySelector('input[type="text"]').value = profileData.nama;
+    document.querySelector('input[type="email"]').value = profileData.email;
+    document.querySelector('textarea').value = profileData.pesan;
+  }
+
+  // === SIMPAN KE LOCAL STORAGE ===
+  function simpanData() {
+    const data = {
+      nama: document.querySelector('input[type="text"]').value,
+      email: document.querySelector('input[type="email"]').value,
+      pesan: document.querySelector('textarea').value
+    };
+    localStorage.setItem("profileForm", JSON.stringify(data));
+  }
+
+  // === LOAD DATA DARI LOCAL STORAGE ===
+  function loadData() {
+    const data = JSON.parse(localStorage.getItem("profileForm"));
+    if (data) {
+      document.querySelector('input[type="text"]').value = data.nama;
+      document.querySelector('input[type="email"]').value = data.email;
+      document.querySelector('textarea').value = data.pesan;
+    }
+  }
+
+  // Jalankan saat halaman dibuka
+  window.onload = loadData;
+</script>
+
+</body>
+</html>
