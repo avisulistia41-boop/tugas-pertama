@@ -1,136 +1,200 @@
 <?php
+include 'koneksi.php';
 
-// menampilkan error
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+$data = mysqli_query($conn, "SELECT * FROM produk");
 
-// koneksi ke database
-$koneksi = mysqli_connect("localhost", "root", "", "ecommerce_db");
-
-// cek koneksi
-if (!$koneksi) {
-    die("Koneksi database gagal : " . mysqli_connect_error());
+if (!$data) {
+    die("Query Error: " . mysqli_error($conn));
 }
-
-// cek filter kategori
-if (isset($_GET['kategori'])) {
-
-    $kategori = $_GET['kategori'];
-
-    // query berdasarkan kategori
-    $query = "SELECT * FROM produk 
-              WHERE kategori='$kategori'";
-
-} else {
-
-    // query semua produk
-    $query = "SELECT * FROM produk";
-}
-
-// menjalankan query
-$result = mysqli_query($koneksi, $query);
-
-// cek query
-if (!$result) {
-    die("Query Error : " . mysqli_error($koneksi));
-}
-
 ?>
 
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
+    <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce PHP</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <title>A v e e y</title>
+</head>
     <style>
+
         body{
-            background:#f5f5f5;
+            font-family: Arial;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
 
-        .card:hover{
-            transform: scale(1.03);
-            transition:0.3s;
+        .navbar{
+            background: #222;
+            color: white;
+            padding: 20px;
         }
+
+        .navbar h2{
+            margin: 0;
+        }
+
+        .container{
+            width: 90%;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .btn{
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .btn-tambah{
+            background: green;
+        }
+
+        .btn-keranjang{
+            background: orange;
+        }
+
+        .produk{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card{
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .card img{
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-body{
+            padding: 20px;
+        }
+
+        .card h3{
+            margin-top: 0;
+        }
+
+        .harga{
+            color: blue;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .stok{
+            margin-top: 10px;
+        }
+
+        .aksi{
+            margin-top: 20px;
+        }
+
+        .aksi a{
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            color: white;
+            font-size: 13px;
+            margin-right: 5px;
+        }
+
+        .edit{
+            background: #3498db;
+        }
+
+        .hapus{
+            background: red;
+        }
+
+        .keranjang{
+            background: green;
+        }
+
     </style>
+
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-        <a href="" class="navbar-brand fw-bold">
-            MyShop
-        </a>
-    </div>
-</nav>
+<div class="navbar">
+    <h2>A v e e y</h2>
+</div>
 
-<div class="container mt-5">
+<div class="container">
 
-    <!-- Judul -->
-    <div class="text-center mb-4">
-        <h1 class="fw-bold">Daftar Produk</h1>
-        <p class="text-muted">
-            Website E-Commerce Sederhana
-        </p>
-    </div>
+    <div class="header">
 
-    <!-- Filter Kategori -->
-    <div class="text-center mb-4">
+        <h1>Daftar Produk</h1>
 
-        <a href="index.php" class="btn btn-secondary">
-            Semua
-        </a>
+        <div>
 
-        <a href="?kategori=Makanan" class="btn btn-primary">
-            Makanan
-        </a>
+            <a href="tambah_produk.php" class="btn btn-tambah">
+                + Tambah Produk
+            </a>
 
-        <a href="?kategori=Minuman" class="btn btn-success">
-            Minuman
-        </a>
+            <a href="keranjang.php" class="btn btn-keranjang">
+                🛒 Lihat Keranjang
+            </a>
 
-        <a href="?kategori=Snack" class="btn btn-warning">
-            Snack
-        </a>
+        </div>
 
     </div>
 
-    <!-- Produk -->
-    <div class="row">
+    <div class="produk">
 
-        <?php while($data = mysqli_fetch_assoc($result)) { ?>
+    <?php
+    while ($produk = mysqli_fetch_assoc($data)) {
+    ?>
 
-        <div class="col-md-4 mb-4">
+        <div class="card">
 
-            <div class="card shadow border-0 h-100">
+            <img src="gambar/<?php echo $produk['gambar']; ?>">
 
-                <div class="card-body">
+            <div class="card-body">
 
-                    <h4>
-                        <?php echo $data['nama_produk']; ?>
-                    </h4>
+                <h3>
+                    <?php echo $produk['nama_produk']; ?>
+                </h3>
 
-                    <span class="badge bg-dark mb-2">
-                       
-                    </span>
+                <p class="harga">
+                    Rp <?php echo number_format($produk['harga']); ?>
+                </p>
 
-                    <h5 class="text-primary">
-                        Rp <?php echo number_format($data['harga']); ?>
-                    </h5>
+                <p class="stok">
+                    Stok : <?php echo $produk['stok']; ?>
+                </p>
 
-                    <p>
-                        Stok :
-                        <b><?php echo $data['stok']; ?></b>
-                    </p>
+                <div class="aksi">
 
-                    <button class="btn btn-success w-100">
-                        Beli
-                    </button>
+                    <a class="edit"
+                    href="edit_produk.php?id=<?php echo $produk['id']; ?>">
+                        Edit
+                    </a>
+
+                    <a class="hapus"
+                    href="hapus_produk.php?id=<?php echo $produk['id']; ?>"
+                    onclick="return confirm('Yakin ingin menghapus?')">
+                        Hapus
+                    </a>
+
+                    <a class="keranjang"
+                    href="tambah_keranjang.php?id=<?php echo $produk['id']; ?>">
+                        + Keranjang
+                    </a>
 
                 </div>
 
@@ -138,7 +202,7 @@ if (!$result) {
 
         </div>
 
-        <?php } ?>
+    <?php } ?>
 
     </div>
 
